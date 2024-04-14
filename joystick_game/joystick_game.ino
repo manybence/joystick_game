@@ -1,30 +1,19 @@
-#define VRX_PIN  A0 // Arduino pin connected to VRX pin
-#define VRY_PIN  A1 // Arduino pin connected to VRY pin
-
-int x = 0; // To store value of the X axis
-int y = 0; // To store value of the Y axis
-String direction = "";
+#include "game.h"
 
 void setup() {
   Serial.begin(9600) ;
 }
 
 void loop() {
-  // read analog X and Y analog values
-  x = analogRead(VRX_PIN);
-  y = analogRead(VRY_PIN);
+  //Show sequence
+  //TODO
 
-  if (x < 200) direction = "up";
-  else if (x > 800) direction = "down";
-  else if (y > 800) direction = "left";
-  else if (y < 200) direction = "right";
+  // Read analog X and Y analog values
+  direction = read_joystick();
 
-  // print data to Serial Monitor on Arduino IDE
-  Serial.print(direction = ");
-  Serial.println(direction);
+  //Display direction LED
+  light_up(direction);
   delay(200);
-
-  // Reset direction
-  direction = ""
+  light_up("");
 }
 
